@@ -91,7 +91,7 @@ namespace CommunityHub.Api.Controllers
             }
         }
 
-        [Authorize(Policy = "AuthenticatedUser")]
+        [Authorize(Policy = "AdminUser")]
         [HttpGet(ApiRoute.Registration.GetRequests)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<RegistrationRequestDto>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -119,7 +119,7 @@ namespace CommunityHub.Api.Controllers
             }
         }
 
-        [Authorize(Policy = "AuthenticatedUser")]
+        [Authorize(Policy = "AdminUser")]
         [HttpGet(ApiRoute.Registration.GetRequestById, Name = RouteNames.Registration.GetRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RegistrationRequestDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -78,7 +78,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = jwtSettings["Issuer"],
             ValidAudience = jwtSettings["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"])),
+
+            RoleClaimType = ClaimTypes.Role,
+            NameClaimType = ClaimTypes.Name
         };
     });
 
@@ -161,7 +164,7 @@ builder.Services.AddAuthorization(options =>
         policy.RequireAuthenticatedUser());
 
     options.AddPolicy("AdminUser", policy =>
-        policy.RequireRole("Admin", "SuperAdmin"));
+        policy.RequireRole("admin", "superadmin"));
 });
 
 // Configure the app to explicitly use HTTP/HTTPS ports

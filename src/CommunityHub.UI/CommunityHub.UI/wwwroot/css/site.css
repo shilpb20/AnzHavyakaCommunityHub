@@ -1,11 +1,11 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 /* Primary Color */
@@ -71,12 +71,12 @@ a, .navbar-nav .nav-link {
     }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .table-striped tbody tr:nth-child(odd) {
@@ -84,12 +84,12 @@ body {
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+    color: var(--bs-secondary-color);
+    text-align: end;
 }
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+    text-align: start;
 }
 
 .btn, .btn-link.nav-link {
@@ -98,17 +98,17 @@ body {
     color: white; /* Button text color */
 }
 
-.btn:hover, .btn:focus, .btn:active {
-    background-color: #F9A800; /* Slightly darker shade for hover/focus */
-    border-color: #F9A800;
-    color: white;
-}
+    .btn:hover, .btn:focus, .btn:active {
+        background-color: #F9A800; /* Slightly darker shade for hover/focus */
+        border-color: #F9A800;
+        color: white;
+    }
 
-/* Optional: If you want to ensure the button text is legible on hover or focus */
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-    color: white; /* Keep text white */
-}
+        /* Optional: If you want to ensure the button text is legible on hover or focus */
+        .btn:focus, .btn:active:focus, .btn-link.nav-link:focus {
+            box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+            color: white; /* Keep text white */
+        }
 
 .btn-secondary {
     background-color: #C8102E; /* Karnataka flag red */
@@ -116,13 +116,13 @@ body {
     color: white;
 }
 
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active {
-    background-color: #B50E28; /* Slightly darker red for hover */
-    border-color: #B50E28;
-    color: white;
-}
+    .btn-secondary:hover,
+    .btn-secondary:focus,
+    .btn-secondary:active {
+        background-color: #B50E28; /* Slightly darker red for hover */
+        border-color: #B50E28;
+        color: white;
+    }
 
 .btn-tertiary {
     background-color: #708090; /* Muted Blue */
@@ -151,6 +151,57 @@ body {
 .table tbody tr:nth-child(even) {
     background-color: white; /* Standard white rows */
 }
+
+/* Pagination container styling */
+#pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between the buttons */
+    margin-top: 20px;
+}
+
+    /* Common styling for pagination buttons */
+    #pagination-container .btn {
+        padding: 8px 16px;
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        background-color: #f1f1f1; /* Default background color */
+        color: #333; /* Default text color */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+        /* Active page button styling (current page highlighted) */
+        #pagination-container .btn.active {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Disabled button styling (grayed out) */
+        #pagination-container .btn.disabled,
+        #pagination-container .btn:disabled {
+            background-color: #ddd;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        /* Hover effect for all buttons */
+        #pagination-container .btn:hover:not(.disabled) {
+            background-color: #0056b3;
+            color: white;
+        }
+
+.not-applicable {
+    background-color: #FFF8E1; /* Soft yellow background */
+    color: #888; /* Gray text to indicate absence of data */
+    text-align: center; /* Center the text */
+    font-style: italic; /* Italicize text for missing data */
+}
+
+
 
 .compact-location {
     white-space: nowrap;

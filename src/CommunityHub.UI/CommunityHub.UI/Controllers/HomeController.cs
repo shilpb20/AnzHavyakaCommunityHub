@@ -19,7 +19,7 @@ public class HomeController : Controller
     private readonly IResponseFactory _responseFactory;
 
     public HomeController(
-        ILogger<HomeController> logger, 
+        ILogger<HomeController> logger,
         IResponseFactory responseFactory,
         IUserService userService)
     {
@@ -27,16 +27,39 @@ public class HomeController : Controller
         _service = userService;
         _responseFactory = responseFactory;
     }
-   
+
     [Authorize(Policy = "AuthenticatedUser")]
     [HttpGet(UiRoute.Home.Index)]
     public async Task<IActionResult> Index(string? sortBy = null, bool ascending = true)
     {
         ApiResponse<List<UserInfoDto>> users = await _service.GetAllUsers(sortBy, ascending);
-        ViewBag.SelectedSortBy = sortBy;
-        ViewBag.SelectedAscending = ascending;
+        ViewBag.Users = users.Data;
         return View(users.Data);
     }
+
+
+    //[Authorize(Policy = "AuthenticatedUser")]
+    //[HttpGet(UiRoute.Home.Index)]
+    //public async Task<IActionResult> Index(int page = 1, string? sortBy = null, bool ascending = true)
+    //{
+    //    int pageSize = 20;
+    //    ApiResponse<List<UserInfoDto>> users = await _service.GetAllUsers(sortBy, ascending);
+
+    //    var totalRecords = users.Data.Count;
+    //    var totalPages = (int)Math.Ceiling(totalRecords / (double)pageSize);
+
+    //    var pagedUsers = users.Data
+    //        .Skip((page - 1) * pageSize)
+    //        .Take(pageSize)
+    //        .ToList();
+
+    //    ViewBag.SelectedSortBy = sortBy;
+    //    ViewBag.SelectedAscending = ascending;
+    //    ViewBag.CurrentPage = page;
+    //    ViewBag.TotalPages = totalPages;
+
+    //    return View(pagedUsers);
+    //}
 
     [HttpGet(UiRoute.Home.Privacy)]
     public IActionResult Privacy()

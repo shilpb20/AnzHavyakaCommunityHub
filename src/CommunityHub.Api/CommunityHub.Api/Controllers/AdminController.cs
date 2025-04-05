@@ -47,7 +47,7 @@ namespace CommunityHub.Api.Controllers
             _userInfoValidationService = userInfoValidationService;
         }
 
-        [Authorize(Policy = "AuthenticatedUser")]
+        [Authorize(Policy = "AdminUser")]
         [HttpPut(ApiRoute.Admin.RejectRequestById)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RegistrationRequestDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -72,7 +72,7 @@ namespace CommunityHub.Api.Controllers
             }
         }
 
-        [Authorize(Policy = "AuthenticatedUser")]
+        [Authorize(Policy = "AdminUser")]
         [HttpPost(ApiRoute.Admin.ApproveRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<UserInfoDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
