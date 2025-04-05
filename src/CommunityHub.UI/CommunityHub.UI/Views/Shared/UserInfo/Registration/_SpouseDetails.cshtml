@@ -1,0 +1,106 @@
+﻿@model CommunityHub.Core.Dtos.RegistrationInfoCreateDto
+
+@{
+    bool isSpousePresent = Model?.UserInfo?.MaritalStatus == "Married";
+    if (!isSpousePresent) { Model.SpouseInfo = null; }
+}
+
+<div class="col-md-6">
+    <div class="card mt-4" id="spouseSection" style="@(isSpousePresent ? "" : "display:none;")">
+        <div class="card-header">
+            <h4>Spouse/Partner Details</h4>
+        </div>
+        <div class="card-body">
+            <!-- Spouse Full Name -->
+            <div class="form-group row mb-2">
+                <label for="SpouseFullName" class="col-md-4 col-form-label">Full Name</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="SpouseFullName" asp-for="SpouseInfo.FullName" />
+                </div>
+            </div>
+
+            <!-- Spouse Email -->
+            <div class="form-group row mb-2">
+                <label for="SpouseEmail" class="col-md-4 col-form-label">Email</label>
+                <div class="col-md-8">
+                    <input type="email" class="form-control" id="SpouseEmail" asp-for="SpouseInfo.Email" />
+                </div>
+            </div>
+
+            <!-- Country Code & Contact Number -->
+            <div class="form-group row mb-2">
+                <label for="CountryCode" class="col-md-4 col-form-label">Country Code</label>
+                <div class="col-md-4">
+                    <select class="form-select" id="CountryCode" asp-for="SpouseInfo.CountryCode">
+                        <option value=""></option>
+                        <option value="+61">AU</option>
+                        <option value="+64">NZ</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="ContactNumber" asp-for="SpouseInfo.ContactNumber" />
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group row mb-2">
+                <label for="Location" class="col-md-4 col-form-label">Location</label>
+                <div class="col-md-8">
+                    <select class="form-select" id="Location" asp-for="SpouseInfo.Location">
+                        <optgroup label="Australia">
+                            <option value=""></option>
+                            <option value="NSW">New South Wales</option>
+                            <option value="VIC">Victoria</option>
+                            <option value="QLD">Queensland</option>
+                            <option value="SA">South Australia</option>
+                            <option value="WA">Western Australia</option>
+                            <option value="TAS">Tasmania</option>
+                            <option value="ACT">Australian Capital Territory</option>
+                            <option value="NT">Northern Territory</option>
+                        </optgroup>
+                        <optgroup label="New Zealand">
+                            <option value="AUK">Auckland</option>
+                            <option value="WGN">Wellington</option>
+                            <option value="CAN">Canterbury</option>
+                            <option value="OTA">Otago</option>
+                            <option value="BOP">Bay of Plenty</option>
+                            <option value="WKO">Waikato</option>
+                            <option value="HKB">Hawke's Bay</option>
+                            <option value="MWT">Manawatu-Wanganui</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group row mb-2">
+                <label for="Gender" class="col-md-4 col-form-label">Gender</label>
+                <div class="col-md-8">
+                    <select class="form-select" asp-for="SpouseInfo.Gender">
+                        <option value=""></option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Other">Other</option>
+                        <option value="NotSpecified">Do not wish to specify</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Spouse Home Town -->
+            <div class="form-group row mb-2">
+                <label for="SpouseHomeTown" class="col-md-4 col-form-label">Home Town</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="SpouseHomeTown" asp-for="SpouseInfo.HomeTown" />
+                </div>
+            </div>
+
+            <!-- Spouse House Name -->
+            <div class="form-group row mb-2">
+                <label for="SpouseHouseName" class="col-md-4 col-form-label">House Name</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="SpouseHouseName" asp-for="SpouseInfo.HouseName" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

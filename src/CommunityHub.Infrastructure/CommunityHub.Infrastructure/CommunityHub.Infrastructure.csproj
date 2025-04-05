@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataManagers\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="DataManagers\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="DataManagers\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Services\Account\ICookieWriterService.cs" />
+    <Compile Include="Services\Account\IJwtTokenService.cs" />
+    <Compile Include="Services\Account\JwtTokenService.cs" />
+    <Compile Include="Services\Admin\AdminService.cs" />
+    <Compile Include="Services\Admin\IAdminService.cs" />
+    <Compile Include="Services\CookieWriterService.cs" />
+    <Compile Include="Services\Registration\IRegistrationService.cs" />
+    <Compile Include="Services\Registration\RegistrationService.cs" />
+    <Compile Include="Services\Account\AccountService.cs" />
+    <Compile Include="Services\User\ChildService.cs" />
+    <Compile Include="Services\User\DuplicateUserInfoChecker.cs" />
+    <Compile Include="Services\Account\IAccountService.cs" />
+    <Compile Include="Services\User\IChildService.cs" />
+    <Compile Include="Services\User\ISpouseService.cs" />
+    <Compile Include="Services\User\IUserInfoValidationService.cs" />
+    <Compile Include="Services\User\IUserService.cs" />
+    <Compile Include="Services\User\SpouseService.cs" />
+    <Compile Include="Services\User\UserService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AppComponents.Repository" Version="1.2.1" />
+    <PackageReference Include="AppComponents.TemplateEngine" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommunityHub.Core\CommunityHub.Core\CommunityHub.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AppComponents.Email">
+      <HintPath>..\..\..\..\AppComponents\AppComponents.Email\src\AppComponents.Email\bin\Release\net8.0\AppComponents.Email.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

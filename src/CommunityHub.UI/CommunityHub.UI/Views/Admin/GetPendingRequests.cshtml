@@ -1,0 +1,127 @@
+﻿@using CommunityHub.Core.Dtos
+@model List<RegistrationRequestDto>
+
+@section Scripts
+{
+    <script src="~/js/common-actions.js"></script>
+    <script src="~/js/filter-location.js"></script>
+}
+
+@{
+    ViewData["Title"] = "Registration Requests";
+    int serial = 1;
+}
+
+<h1>Registration Requests</h1>
+<hr />
+
+<!-- Filter by Location -->
+<div class="mb-3 w-100">
+    <div class="d-flex justify-content-end align-items-center" style="white-space: nowrap;">
+        <select id="locationFilter" class="form-select" style="width:350px;" onchange="filterByLocation()">
+
+            <option value="">All Locations</option>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var loc in Model.Select(x => x.RegistrationInfo.UserInfo.Location).ToList().Distinct())
+                {
+                    <option value="@loc">@loc</option>
+                }
+            }
+            else
+            {
+                <option value="" disabled>No locations available</option>
+            }
+        </select>
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        <strong>Error:</strong> @ViewBag.ErrorMessage
+    </div>
+}
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-info-circle"></i> No pending requests available.
+    </div>
+}
+else
+{
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div id="successMessage" class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div id="errorMessage" class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Request ID</th>
+                <th>User Name</th>
+                <th>Location</th>
+                <th>Actions</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody id="requestTableBody">
+            @foreach (var request in Model)
+            {
+                <tr class="mainRow">
+                    <td>@serial</td>
+                    <td>@request.Id</td>
+                    <td>@request?.RegistrationInfo?.UserInfo.FullName</td>
+                    <td><span class="compact-location">@request?.RegistrationInfo?.UserInfo.Location</span></td>
+                    <td>
+                        <form action="@Url.Action("ApproveRequest", "Admin")" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@request?.Id" />
+                            <button type="submit" class="btn btn-primary" style="min-width: 120px;">Approve</button>
+                        </form>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#rejectModal-@request?.Id" style="min-width: 120px;">Reject</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-tertiary" data-bs-toggle="collapse" data-bs-target="#details-@request?.Id" aria-expanded="false" aria-controls="details-@request?.Id">
+                            View Details
+                        </button>
+                    </td>
+                </tr>
+
+                @await Html.PartialAsync("~/Views/Shared/UserInfo/Table/_RejectionModal.cshtml", request.Id)
+
+                <tr class="collapse" id="details-@request.Id">
+                    <td colspan="6">
+                        <div class="row">
+                            @(await Html.PartialAsync("~/Views/Shared/UserInfo/Table/_UserDetails.cshtml", request.RegistrationInfo?.UserInfo))
+                            @(await Html.PartialAsync("~/Views/Shared/UserInfo/Table/_SpouseDetails.cshtml", request.RegistrationInfo?.SpouseInfo))
+                            @(await Html.PartialAsync("~/Views/Shared/UserInfo/Table/_ChildrenDetails.cshtml", request.RegistrationInfo?.Children))
+                        </div>
+                    </td>
+                </tr>
+                serial++;
+            }
+        </tbody>
+    </table>
+
+}
+
+<style>
+    .compact-location {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>

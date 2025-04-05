@@ -1,0 +1,58 @@
+﻿@using CommunityHub.Core.Dtos
+@model UserInfoDto
+
+<div class="col-4">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center" style="border-top: 2px solid #dee2e6; border-bottom: 2px solid #dee2e6;">
+                User Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!string.IsNullOrEmpty(Model.Email))
+        {
+            <tr>
+                <td><strong>Email:</strong></td>
+                <td>@Model.Email</td>
+            </tr>
+        }
+        @if (!string.IsNullOrEmpty(Model.ContactNumber))
+        {
+            <tr>
+                <td><strong>Contact:</strong></td>
+                <td>@Model.CountryCode - @Model.ContactNumber</td>
+            </tr>
+        }
+        @if (!string.IsNullOrEmpty(Model.Gender))
+        {
+            <tr>
+                <td><strong>Gender:</strong></td>
+                <td>@Model.Gender</td>
+            </tr>
+        }
+        @if (!string.IsNullOrEmpty(Model.MaritalStatus))
+        {
+            <tr>
+                <td><strong>Marital Status:</strong></td>
+                <td>@Model.MaritalStatus</td>
+            </tr>
+        }
+        @if (!string.IsNullOrEmpty(Model.HomeTown))
+        {
+            <tr>
+                <td><strong>Home Town:</strong></td>
+                <td>@Model.HomeTown</td>
+            </tr>
+        }
+        @if (!string.IsNullOrEmpty(Model.HouseName))
+        {
+            <tr>
+                <td><strong>House Name:</strong></td>
+                <td>@Model.HouseName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,8 @@
+﻿<!DOCTYPE html>
+<html>
+    <body>
+        <div class="header">
+            <img src="{{logo}}" alt="ANZ Havyaka Directory Logo">
+        </div>
+    </body>
+</html>

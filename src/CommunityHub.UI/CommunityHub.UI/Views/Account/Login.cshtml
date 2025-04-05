@@ -1,0 +1,90 @@
+﻿@using CommunityHub.Core.Models
+@model Login
+
+@{
+    ViewData["Title"] = "Login - ANZ Havyaka Directory";
+}
+
+@section Scripts
+{
+    <script src="~/js/registrationForm.js"></script>
+    <script src="~/js/common-actions.js"></script>
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4">
+                <!-- Logo and Heading -->
+                <div class="text-center mb-4">
+                    <img src="~/images/logo.png" alt="CommunityHub Logo" class="img-fluid mb-3" style="max-width: 150px;" />
+                    <h3>Welcome to ANZ Havyaka Directory</h3>
+                </div>
+               
+                <!-- Login Form -->
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Login</h4>
+                    </div>
+                    <div class="card-body">
+                        <form asp-controller="Account" asp-action="Login" method="post">
+                            <!-- Username -->
+                            <div class="form-group mb-4">
+                                <label asp-for="Email" class="mb-2" style="margin-left: 10px;"></label>
+                                <input asp-for="Email" class="form-control mb-2" placeholder="Enter Username" required />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group mb-4">
+                                <label asp-for="Password" class="mb-2"  style="margin-left: 10px;"></label>
+                                <input asp-for="Password" type="password" class="form-control mb-2" placeholder="Enter Password" required />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                            {
+                                <div id="errorMessage" class="alert alert-danger mt-3">
+                                    @ViewBag.ErrorMessage
+                                </div>
+                            }
+
+                            <!-- Submit Button -->
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+                            </div>
+                        </form>
+
+                        <!-- Links for Forgot Password and Register -->
+                        <div class="d-flex justify-content-between mt-3">
+                            <a asp-controller="Account" asp-action="ForgotPassword" class="text-center">Forgot Password?</a>
+                            <a asp-controller="Account" asp-action="Register" class="text-center">Register</a>
+                        </div>
+                    </div>
+                </div>
+             
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div id="successMessage" class="alert alert-success mt-3">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+            
+            </div>
+        </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

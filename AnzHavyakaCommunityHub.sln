@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.Core", "src\CommunityHub.Core\CommunityHub.Core\CommunityHub.Core.csproj", "{48A8D59A-279F-426C-930F-394EA08F6071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.UI", "src\CommunityHub.UI\CommunityHub.UI\CommunityHub.UI.csproj", "{51EBCD68-2D91-422F-88DA-50FF5FA63356}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{602C3854-4D92-4690-89B6-E1C7CB0B2144}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8EB5C17D-544C-4AE9-9E87-2A49AFFDB5D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.Infrastructure", "src\CommunityHub.Infrastructure\CommunityHub.Infrastructure\CommunityHub.Infrastructure.csproj", "{D880B983-C08E-437A-B7B1-AEF086DD1E02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github-workflow", "github-workflow", "{544EE33C-DF52-4BAC-82C8-4A073B1C5BB1}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnetcore_ci.yml = .github\workflows\dotnetcore_ci.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.Api", "src\CommunityHub.Api\CommunityHub.Api\CommunityHub.Api.csproj", "{AE791F6D-A9A7-4F9A-A4D9-A91FDE1E186E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailTemplates", "EmailTemplates", "{D0048F18-58B2-4428-995F-A0DA28874554}"
+	ProjectSection(SolutionItems) = preProject
+		Data\EmailTemplates\password-reset-mail.html = Data\EmailTemplates\password-reset-mail.html
+		Data\EmailTemplates\registration-request-approval.html = Data\EmailTemplates\registration-request-approval.html
+		Data\EmailTemplates\registration-request-rejection.html = Data\EmailTemplates\registration-request-rejection.html
+		Data\EmailTemplates\registration-request.html = Data\EmailTemplates\registration-request.html
+		Data\EmailTemplates\_footer.html = Data\EmailTemplates\_footer.html
+		Data\EmailTemplates\_header.html = Data\EmailTemplates\_header.html
+		Data\EmailTemplates\_logo.png = Data\EmailTemplates\_logo.png
+		Data\EmailTemplates\_style.css = Data\EmailTemplates\_style.css
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.IntegrationTests", "..\CommunityHub\tests\CommunityHub.IntegrationTests\CommunityHub.IntegrationTests.csproj", "{B224C51F-CFA3-47C4-9B30-65304B67AA53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.Tests.Core", "..\CommunityHub\tests\CommunityHub.Tests.Core\CommunityHub.Tests.Core\CommunityHub.Tests.Core.csproj", "{D91A73C3-6B68-4862-AB51-B3CBA797F0C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityHub.UnitTests", "..\CommunityHub\tests\CommunityHub.UnitTests\CommunityHub.UnitTests.csproj", "{EDF708B0-1F29-492A-8D17-12CEDF5F0918}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48A8D59A-279F-426C-930F-394EA08F6071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A8D59A-279F-426C-930F-394EA08F6071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A8D59A-279F-426C-930F-394EA08F6071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A8D59A-279F-426C-930F-394EA08F6071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51EBCD68-2D91-422F-88DA-50FF5FA63356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51EBCD68-2D91-422F-88DA-50FF5FA63356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51EBCD68-2D91-422F-88DA-50FF5FA63356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51EBCD68-2D91-422F-88DA-50FF5FA63356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D880B983-C08E-437A-B7B1-AEF086DD1E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D880B983-C08E-437A-B7B1-AEF086DD1E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D880B983-C08E-437A-B7B1-AEF086DD1E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D880B983-C08E-437A-B7B1-AEF086DD1E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE791F6D-A9A7-4F9A-A4D9-A91FDE1E186E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE791F6D-A9A7-4F9A-A4D9-A91FDE1E186E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE791F6D-A9A7-4F9A-A4D9-A91FDE1E186E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE791F6D-A9A7-4F9A-A4D9-A91FDE1E186E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B224C51F-CFA3-47C4-9B30-65304B67AA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B224C51F-CFA3-47C4-9B30-65304B67AA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B224C51F-CFA3-47C4-9B30-65304B67AA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B224C51F-CFA3-47C4-9B30-65304B67AA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D91A73C3-6B68-4862-AB51-B3CBA797F0C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D91A73C3-6B68-4862-AB51-B3CBA797F0C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D91A73C3-6B68-4862-AB51-B3CBA797F0C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D91A73C3-6B68-4862-AB51-B3CBA797F0C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF708B0-1F29-492A-8D17-12CEDF5F0918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF708B0-1F29-492A-8D17-12CEDF5F0918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF708B0-1F29-492A-8D17-12CEDF5F0918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF708B0-1F29-492A-8D17-12CEDF5F0918}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48A8D59A-279F-426C-930F-394EA08F6071} = {602C3854-4D92-4690-89B6-E1C7CB0B2144}
+		{51EBCD68-2D91-422F-88DA-50FF5FA63356} = {602C3854-4D92-4690-89B6-E1C7CB0B2144}
+		{D880B983-C08E-437A-B7B1-AEF086DD1E02} = {602C3854-4D92-4690-89B6-E1C7CB0B2144}
+		{AE791F6D-A9A7-4F9A-A4D9-A91FDE1E186E} = {602C3854-4D92-4690-89B6-E1C7CB0B2144}
+		{B224C51F-CFA3-47C4-9B30-65304B67AA53} = {8EB5C17D-544C-4AE9-9E87-2A49AFFDB5D5}
+		{D91A73C3-6B68-4862-AB51-B3CBA797F0C4} = {8EB5C17D-544C-4AE9-9E87-2A49AFFDB5D5}
+		{EDF708B0-1F29-492A-8D17-12CEDF5F0918} = {8EB5C17D-544C-4AE9-9E87-2A49AFFDB5D5}
+	EndGlobalSection
+EndGlobal

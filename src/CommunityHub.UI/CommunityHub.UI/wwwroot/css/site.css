@@ -1,0 +1,162 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Primary Color */
+body {
+    background-color: #f8f9fa;
+    color: #333; /* Dark text for readability */
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.dropdown-header,
+.filter-label,
+.panel-title,
+.card-header,
+.table thead th {
+    color: #C8102E; /* Dark Red for headers */
+}
+
+/* Primary Button (Yellow) */
+.btn, .btn-link.nav-link {
+    background-color: #FDB813; /* Yellow */
+    border-color: #FDB813;
+    color: white;
+}
+
+    .btn:hover, .btn:focus, .btn:active {
+        background-color: #F9A800; /* Slightly darker shade for hover */
+        border-color: #F9A800;
+    }
+
+/* Table Header */
+.table thead {
+    background-color: #FDB813; /* Yellow header background */
+    color: white;
+}
+
+/* Table Rows */
+.table tbody tr:nth-child(odd) {
+    background-color: white; /* White rows for odd rows */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #FFF8E1; /* Soft cream for even rows */
+}
+
+/* Secondary Color (Dark Red) */
+.table thead th, .navbar-brand {
+    color: #C8102E; /* Dark Red */
+}
+
+footer {
+    background-color: #f8f9fa;
+    color: #004F97; /* Dark Blue for footer text */
+}
+
+/* Tertiary Color (Dark Blue) */
+a, .navbar-nav .nav-link {
+    color: #004F97; /* Dark Blue links */
+}
+
+    a:hover {
+        color: #C8102E; /* Dark Red on hover for links */
+    }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #FFE9A3 !important;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.btn, .btn-link.nav-link {
+    background-color: #FDB813; /* Karnatak flag yellow-orange */
+    border-color: #FDB813; /* Matching border color */
+    color: white; /* Button text color */
+}
+
+.btn:hover, .btn:focus, .btn:active {
+    background-color: #F9A800; /* Slightly darker shade for hover/focus */
+    border-color: #F9A800;
+    color: white;
+}
+
+/* Optional: If you want to ensure the button text is legible on hover or focus */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    color: white; /* Keep text white */
+}
+
+.btn-secondary {
+    background-color: #C8102E; /* Karnataka flag red */
+    border-color: #C8102E;
+    color: white;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #B50E28; /* Slightly darker red for hover */
+    border-color: #B50E28;
+    color: white;
+}
+
+.btn-tertiary {
+    background-color: #708090; /* Muted Blue */
+    border-color: #708090;
+    color: 000066;
+}
+
+    /* Hover, focus, and active states for the tertiary button */
+    .btn-tertiary:hover,
+    .btn-tertiary:focus,
+    .btn-tertiary:active {
+        background-color: #6C7B8B; /* Slightly darker muted blue for hover */
+        border-color: #6C7B8B;
+        color: white;
+    }
+
+.table thead {
+    background-color: #FDB813; /* Karnataka flag yellow */
+    color: white; /* White text for readability */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #FFE9A3; /* Soft golden for alternate rows */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: white; /* Standard white rows */
+}
+
+.compact-location {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+}

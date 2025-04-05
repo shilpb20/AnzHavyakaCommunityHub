@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="Services\**" />
+    <Compile Remove="TestData\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="TestData\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="Services\**" />
+    <None Remove="TestData\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="HttpSendRequestHelperTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AppComponents.Repository" Version="1.2.1" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="FluentAssertions" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CommunityHub.Api\CommunityHub.Api\CommunityHub.Api.csproj" />
+    <ProjectReference Include="..\..\src\CommunityHub.Core\CommunityHub.Core\CommunityHub.Core.csproj" />
+    <ProjectReference Include="..\..\src\CommunityHub.Infrastructure\CommunityHub.Infrastructure\CommunityHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\CommunityHub.Tests.Core\CommunityHub.Tests.Core\CommunityHub.Tests.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AppComponents.Email">
+      <HintPath>..\..\..\AppComponents\AppComponents.Email\src\AppComponents.Email\bin\Debug\net8.0\AppComponents.Email.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

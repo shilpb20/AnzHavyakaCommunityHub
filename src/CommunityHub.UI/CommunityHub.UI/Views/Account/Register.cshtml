@@ -1,0 +1,72 @@
+﻿@model CommunityHub.Core.Dtos.RegistrationInfoCreateDto
+
+@section Scripts
+{
+    <script src="~/js/registrationForm.js"></script>
+    <script src="~/js/common-actions.js"></script>
+}
+<style>
+    .container {
+        margin-top: 50px;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Registration Form";
+}
+
+<div class="container">
+    <div class="col-md-6 text-center">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <strong>Please fix the following errors:</strong>
+            <ul class="text-danger">
+                @foreach (var entry in ViewData.ModelState)
+                {
+                    foreach (var error in entry.Value.Errors)
+                    {
+                        string errorMessage = error.ErrorMessage;
+                        if (entry.Key.Contains("Spouse"))
+                        {
+                            errorMessage = "Spouse: " + errorMessage;
+                        }
+                        else if (entry.Key.Contains("UserDetails"))
+                        {
+                            errorMessage = "User: " + errorMessage;
+                        }
+
+                        <li>@errorMessage</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+
+    <form id="registrationForm" method="post" action="@Url.Action("add", "account")">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successMessage" class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        } <!-- Row for User and Spouse Details (side by side) -->
+        <div class="row mt-4">
+            @await Html.PartialAsync("~/Views/Shared/UserInfo/Registration/_UserDetails.cshtml", Model)
+            @await Html.PartialAsync("~/Views/Shared/UserInfo/Registration/_SpouseDetails.cshtml", Model)
+            @await Html.PartialAsync("~/Views/Shared/UserInfo/Registration/_ChildrenDetails.cshtml", Model)
+        </div>
+
+        <!-- Row for Register and Cancel Buttons -->
+        <div class="col-md-6">
+            <div class="row mt-4">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-2 col-md-3">Register</button>
+                    <button type="button" class="btn btn-secondary me-2 col-md-3" onclick="window.location.href='@Url.Action("login", "account")';">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

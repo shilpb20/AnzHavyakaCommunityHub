@@ -1,0 +1,84 @@
+﻿@using CommunityHub.Core.Constants
+
+<!DOCTYPE html>
+<html lang="en">
+@*     <script type="importmap"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANZ Havyaka Directory</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CommunityHub.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-+T1JHl6pbBQPr6YOV5Lsy69eTMoA4J8C9Qq3HpD1T9Y1ZSm5nUAA3w4sXkT2I4Op" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Full-width header with custom background class -->
+    <header class="header-background">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <img src="~/images/logo.png" alt="CommunityHub Logo" class="img-fluid mb-3" style="max-width: 60px;" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ANZ Havyaka Directory</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item ms-auto mx-2">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.SuperAdmin)) 
+                        {
+                                <li class="nav-item mx-2">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                            </li>
+                        }
+
+                            <li class="nav-item mx-2">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <form method="POST" action="/account/logout">
+                                <button type="submit" class="nav-link text-dark" style="background:none; border:none; color: inherit; font: inherit;">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                        }
+                    </ul>
+                        
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Full-width footer with custom background class -->
+    <footer class="border-top footer text-muted footer-background">
+        <div class="container-fluid">
+            &copy; 2025 - ANZ Havyaka Directory - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

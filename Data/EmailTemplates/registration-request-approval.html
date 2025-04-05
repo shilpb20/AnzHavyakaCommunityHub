@@ -1,0 +1,36 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{Title}}</title>
+    <link rel="stylesheet" type="text/css" href="_style.css">
+</head>
+<body>
+    <div class="email-container">
+        <div class="content">
+            <h2>Registration Request Accepted</h2>
+            <p>Dear {{UserName}},</p>
+
+            <p>Congratulations! Your registration request for the <strong>ANZ Havyaka Directory</strong> has been accepted. You can now verify your email and set your password.</p>
+
+            <p>Your email is automatially verified once you successfully set your password using the link below:</p>
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td style="background-color: #007BFF; padding: 10px 20px; border-radius: 5px; text-align: center;">
+                        <a href="{{PasswordSetLink}}" target="_blank" style="color: white; text-decoration: none; font-size: 16px; display: inline-block;">
+                            Set Your Password
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <p><strong>Note:</strong> The password reset link is valid for **24 hours**. If it expires, you will need to request a new one.</p>
+
+            <p>After setting your password, you can log in using your username and the newly set password.</p>
+
+            <p>If you have any questions or need assistance, feel free to contact us.</p>
+            <p>Thank you for supporting the ANZ Havyaka Community.</p>
+        </div>
+    </div>
+</body>
+</html>

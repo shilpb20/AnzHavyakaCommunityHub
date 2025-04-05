@@ -1,0 +1,73 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* Fixed Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: #fff;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0px 2px 0px 0px gray;
+}
+
+/* Adjust the body to account for the fixed header */
+body {
+    margin: 0;
+    padding-top: 0px;
+    margin-bottom: 50px;
+    background-color: #f8f9fa;
+}
+
+main
+{
+  padding: 20px; /* Add padding inside the main content */
+  min-height: 100vh; /* Ensure it takes the full viewport height */
+}
+
+/* Footer Styles */
+footer {
+  position: relative; /* Change footer position to relative */
+  margin-top: auto; /* Push the footer to the bottom of the page */
+  background-color: #f8f9fa; /* Optional, for a lighter background */
+  text-align: center;
+}
+
+/* Form floating styles */
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+/* Compact location styles */
+.compact-location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  display: inline-block;
+  vertical-align: middle;
+}

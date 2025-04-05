@@ -1,0 +1,34 @@
+﻿@using CommunityHub.Core.Dtos
+@model List<ChildDto>
+ 
+<!-- Children Details Table -->
+<div class="col-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center" style="border-top: 2px solid #dee2e6; border-bottom: 2px solid #dee2e6;">
+                    Children
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="2" class="text-center">N/A</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @foreach (var child in Model.ToList())
+                        {
+                            <div>@child.Name</div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

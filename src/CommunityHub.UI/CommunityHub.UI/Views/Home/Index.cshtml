@@ -1,0 +1,140 @@
+﻿@using CommunityHub.Core.Dtos;
+@model List<UserInfoDto>
+
+@{
+    ViewData["Title"] = "ANZ Havyaka Family Directory";
+    int serial = 1;
+}
+
+<div class="text-center mb-4">
+    <h1>
+        Welcome to ANZ Havyaka Directory
+    </h1>
+</div>
+<hr />
+
+<!-- Location Filter and Sort By -->
+<div class="mb-3 w-100">
+    <div class="d-flex justify-content-between align-items-center" style="white-space: nowrap;">
+        <div class="d-flex align-items-center me-4">
+            <label for="locationFilter" class="me-2">Filter by Location:</label>
+            <select id="locationFilter" class="form-select" style="width: 350px;" onchange="filterByLocation()">
+                <option value="">All Locations</option>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var loc in Model.Select(x => x.Location).Distinct())
+                    {
+                        <option value="@loc">@loc</option>
+                    }
+                }
+                else
+                {
+                    <option value="" disabled>No locations available</option>
+                }
+            </select>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <label for="sortDropdown" class="me-2">Sort by:</label>
+            <select id="sortDropdown" class="form-select" style="width: 250px;" onchange="sortUsers()">
+                <option value="FullName_A_Z">Name (A-Z)</option>
+                <option value="FullName_Z_A">Name (Z-A)</option>
+                <option value="Location_A_Z">Location (A-Z)</option>
+                <option value="Location_Z_A">Location (Z-A)</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-info-circle"></i> No data available.
+    </div>
+}
+else
+{
+    <div id="pagination-container" class="d-flex justify-content-center mt-3"></div>
+    <table class="table table-striped table-bordered" id="users-table">
+        <thead>
+            <tr>
+                <th colspan="1" class="text-center"></th>
+                <th colspan="3" class="text-center">Primary Member Details</th>
+                <th colspan="3" class="text-center">Spouse/Partner Details</th>
+                <th colspan="1" class="text-center">Kids</th>
+            </tr>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Name</th>
+                <th>Contact Info</th>
+                <th>Location</th>
+                <th>Name</th>
+                <th>Contact Info</th>
+                <th>Location</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="requestTableBody">
+            @foreach (var user in Model)
+            {
+                <tr class="mainRow">
+                    <td>@serial</td>
+                    <td id="user-name">
+                        @user.FullName
+                    </td>
+                    <td id="user-contact">
+                        @user.ContactNumber<br>
+                        @user.Email
+                    </td>
+                    <td id="user-location">
+                        @user.Location
+                    </td>
+
+                    @if (user.SpouseInfo != null)
+                    {
+                        <td id="spouse-name">
+                            @user.SpouseInfo.FullName
+                        </td>
+                        <td id="spouse-contact">
+                            <div>@user.SpouseInfo.Email</div>
+                            <div>@user.SpouseInfo.ContactNumber</div>
+                        </td>
+                        <td id="spouse-location">
+                            @user.SpouseInfo.Location
+                        </td>
+                    }
+                    else
+                    {
+                        <td colspan="3" class="text-center">N/A</td>
+                    }
+
+                    <td id="children-info">
+                        @if (user.Children != null && user.Children.Any())
+                        {
+                            @foreach (var child in user.Children)
+                            {
+                                <div>@child.Name</div>
+                            }
+                        }
+                        else
+                        {
+                            <span>N/A</span>
+                        }
+                    </td>
+                </tr>
+                serial++;
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination controls -->
+    <div id="requestTableBody-pagination" class="d-flex justify-content-center mt-3"></div>
+}
+
+<script>
+    window.usersData = @Html.Raw(Model != null ? Newtonsoft.Json.JsonConvert.SerializeObject(Model) : "[]");
+</script>
+
+
+<!-- Include external JavaScript file -->
+<script src="@Url.Content("~/js/directory.js")"></script>

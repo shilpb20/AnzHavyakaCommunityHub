@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Dashboard</h1>
+<br/>
+<div class="container mt-4">
+    <!-- Section for managing registration requests -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <a href="@Url.Action("GetPendingRequests", "Admin")" class="btn btn-primary btn-lg w-100">
+                Manage Registration Requests
+            </a>
+        </div>
+    </div>
+
+    <!-- Section for managing user access -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <a href="@Url.Action("GetPendingRequests", "Admin")" class="btn btn-primary btn-lg w-100">
+                Manage User Access
+            </a>
+        </div>
+    </div>
+</div>

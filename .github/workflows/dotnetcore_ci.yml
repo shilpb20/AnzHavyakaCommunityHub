@@ -1,0 +1,57 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches:
+      - development
+      - master
+  pull_request:
+    branches:
+      - development
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install .NET 9 SDK
+        run: |
+          wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+          sudo bash dotnet-install.sh --version 9.0.202 --install-dir /usr/share/dotnet
+          sudo rm -f /usr/bin/dotnet  # Remove any existing symbolic link
+          sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet  # Create new symbolic link
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore NuGet packages (if needed)
+        run: dotnet restore
+        if: steps.cache.outputs.cache-hit != 'true'  # Only restore if the cache was not hit
+
+      - name: Build code
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run tests with code coverage
+        run: |
+          dotnet test --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" --results-directory ./TestResults --verbosity normal
+          
+      # List files in the directory to check if test-results.trx was created
+      - name: List files in TestResults directory
+        run: ls -R ./TestResults  # Check if test-results.trx exists in this folder
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./TestResults/test-results.trx  # Adjusted to the correct path of the .trx file

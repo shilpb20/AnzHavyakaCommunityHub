@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Error";
+    var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+    var homeController = isAuthenticated ? "Home" : "Account";
+    var homeAction = isAuthenticated ? "Index" : "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 150vh;">
+    <div class="text-center" style="position: relative; top: -150px;">
+        <h1 class="mt-10">Something went wrong</h1>
+        <p>An unexpected error has occurred. Please try again later.</p>
+
+        <a asp-controller="@homeController" asp-action="@homeAction" class="btn btn-primary btn-lg">
+            @(isAuthenticated ? "Go Home" : "Login")
+        </a>
+    </div>
+</div>
