@@ -51,157 +51,98 @@ h1, h2, h3, h4, h5, h6,
     background-color: #FFF8E1; /* Soft cream for even rows */
 }
 
-/* Secondary Color (Dark Red) */
-.table thead th, .navbar-brand {
-    color: #C8102E; /* Dark Red */
-}
-
-footer {
-    background-color: #f8f9fa;
-    color: #004F97; /* Dark Blue for footer text */
-}
-
-/* Tertiary Color (Dark Blue) */
-a, .navbar-nav .nav-link {
-    color: #004F97; /* Dark Blue links */
-}
-
-    a:hover {
-        color: #C8102E; /* Dark Red on hover for links */
-    }
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
-.table-striped tbody tr:nth-child(odd) {
-    background-color: #FFE9A3 !important;
-}
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-    text-align: start;
-}
-
-.btn, .btn-link.nav-link {
-    background-color: #FDB813; /* Karnatak flag yellow-orange */
-    border-color: #FDB813; /* Matching border color */
-    color: white; /* Button text color */
-}
-
-    .btn:hover, .btn:focus, .btn:active {
-        background-color: #F9A800; /* Slightly darker shade for hover/focus */
-        border-color: #F9A800;
-        color: white;
-    }
-
-        /* Optional: If you want to ensure the button text is legible on hover or focus */
-        .btn:focus, .btn:active:focus, .btn-link.nav-link:focus {
-            box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-            color: white; /* Keep text white */
-        }
-
-.btn-secondary {
-    background-color: #C8102E; /* Karnataka flag red */
-    border-color: #C8102E;
-    color: white;
-}
-
-    .btn-secondary:hover,
-    .btn-secondary:focus,
-    .btn-secondary:active {
-        background-color: #B50E28; /* Slightly darker red for hover */
-        border-color: #B50E28;
-        color: white;
-    }
-
-.btn-tertiary {
-    background-color: #708090; /* Muted Blue */
-    border-color: #708090;
-    color: 000066;
-}
-
-    /* Hover, focus, and active states for the tertiary button */
-    .btn-tertiary:hover,
-    .btn-tertiary:focus,
-    .btn-tertiary:active {
-        background-color: #6C7B8B; /* Slightly darker muted blue for hover */
-        border-color: #6C7B8B;
-        color: white;
-    }
-
-.table thead {
-    background-color: #FDB813; /* Karnataka flag yellow */
-    color: white; /* White text for readability */
-}
-
-.table tbody tr:nth-child(odd) {
-    background-color: #FFE9A3; /* Soft golden for alternate rows */
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: white; /* Standard white rows */
-}
-
 /* Pagination container styling */
-#pagination-container {
+.pagination {
     display: flex;
     justify-content: center;
     gap: 10px; /* Space between the buttons */
     margin-top: 20px;
 }
 
-    /* Common styling for pagination buttons */
-    #pagination-container .btn {
-        padding: 8px 16px;
-        font-size: 16px;
-        display: inline-block;
-        text-align: center;
-        text-decoration: none;
-        background-color: #f1f1f1; /* Default background color */
-        color: #333; /* Default text color */
-        border: 1px solid #ddd;
-        border-radius: 4px;
+    .pagination .page-item {
+        margin: 0 5px;
     }
 
+        .pagination .page-item a {
+            padding: 8px 16px;
+            font-size: 16px;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            background-color: #f1f1f1; /* Default background color */
+            color: #333; /* Default text color */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
         /* Active page button styling (current page highlighted) */
-        #pagination-container .btn.active {
+        .pagination .page-item.active a {
             background-color: #007bff;
             color: white;
             font-weight: bold;
         }
 
         /* Disabled button styling (grayed out) */
-        #pagination-container .btn.disabled,
-        #pagination-container .btn:disabled {
+        .pagination .page-item.disabled a {
             background-color: #ddd;
             color: #aaa;
             cursor: not-allowed;
         }
 
         /* Hover effect for all buttons */
-        #pagination-container .btn:hover:not(.disabled) {
+        .pagination .page-item a:hover:not(.disabled) {
             background-color: #0056b3;
             color: white;
         }
 
-.not-applicable {
-    background-color: #FFF8E1; /* Soft yellow background */
-    color: #888; /* Gray text to indicate absence of data */
-    text-align: center; /* Center the text */
-    font-style: italic; /* Italicize text for missing data */
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    margin-top: 75px; /* Top margin added */
+    margin-bottom: 10px;
+    gap: 10px; /* Adds space between the input field and buttons */
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 250px;
+}
+
+.search-bar button {
+    padding: 8px 16px; /* Consistent padding for buttons */
+    font-size: 16px;
+    cursor: pointer;
+    height: 40px; /* Ensures buttons have the same height */
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #007bff;
+    color: white;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* Clear Button: Specific styling if you want to customize the color */
+.search-bar button:nth-child(2) {
+    background-color: #6c757d; /* A neutral color for 'Clear' */
+}
+
+.search-bar button:nth-child(2):hover {
+    background-color: #5a6268; /* Darker shade for 'Clear' hover */
 }
 
 
+.not-applicable {
+    background-color: #FFF8E1;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+}
 
 .compact-location {
     white-space: nowrap;

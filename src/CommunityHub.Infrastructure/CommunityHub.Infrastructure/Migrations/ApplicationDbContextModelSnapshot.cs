@@ -87,7 +87,45 @@ namespace CommunityHub.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Child", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.ContactForm", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactForms");
+                });
+
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.Child", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,29 +148,7 @@ namespace CommunityHub.Infrastructure.Migrations
                     b.ToTable("Children");
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.FamilyPicture", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserInfoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserInfoId")
-                        .IsUnique();
-
-                    b.ToTable("FamilyPicture");
-                });
-
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.RegistrationRequest", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.RegistrationRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +178,7 @@ namespace CommunityHub.Infrastructure.Migrations
                     b.ToTable("RegistrationRequests");
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.SpouseInfo", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.SpouseInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -218,7 +234,7 @@ namespace CommunityHub.Infrastructure.Migrations
                     b.ToTable("SpouseInfo");
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.UserInfo", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.UserInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -412,9 +428,9 @@ namespace CommunityHub.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Child", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.Child", b =>
                 {
-                    b.HasOne("CommunityHub.Infrastructure.Models.UserInfo", "UserInfo")
+                    b.HasOne("CommunityHub.Infrastructure.Models.Registration.UserInfo", "UserInfo")
                         .WithMany("Children")
                         .HasForeignKey("UserInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -423,33 +439,22 @@ namespace CommunityHub.Infrastructure.Migrations
                     b.Navigation("UserInfo");
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.FamilyPicture", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.SpouseInfo", b =>
                 {
-                    b.HasOne("CommunityHub.Infrastructure.Models.UserInfo", "UserInfo")
-                        .WithOne("FamilyPicture")
-                        .HasForeignKey("CommunityHub.Infrastructure.Models.FamilyPicture", "UserInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserInfo");
-                });
-
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.SpouseInfo", b =>
-                {
-                    b.HasOne("CommunityHub.Infrastructure.Models.UserInfo", "UserInfo")
+                    b.HasOne("CommunityHub.Infrastructure.Models.Registration.UserInfo", "UserInfo")
                         .WithOne("SpouseInfo")
-                        .HasForeignKey("CommunityHub.Infrastructure.Models.SpouseInfo", "UserInfoId")
+                        .HasForeignKey("CommunityHub.Infrastructure.Models.Registration.SpouseInfo", "UserInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("UserInfo");
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.UserInfo", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.UserInfo", b =>
                 {
                     b.HasOne("CommunityHub.Infrastructure.Models.ApplicationUser", "ApplicationUser")
                         .WithOne()
-                        .HasForeignKey("CommunityHub.Infrastructure.Models.UserInfo", "ApplicationUserId")
+                        .HasForeignKey("CommunityHub.Infrastructure.Models.Registration.UserInfo", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -507,11 +512,9 @@ namespace CommunityHub.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CommunityHub.Infrastructure.Models.UserInfo", b =>
+            modelBuilder.Entity("CommunityHub.Infrastructure.Models.Registration.UserInfo", b =>
                 {
                     b.Navigation("Children");
-
-                    b.Navigation("FamilyPicture");
 
                     b.Navigation("SpouseInfo");
                 });

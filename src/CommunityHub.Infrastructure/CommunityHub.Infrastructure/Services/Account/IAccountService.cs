@@ -1,5 +1,7 @@
 ﻿using CommunityHub.Core.Models;
 using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Login;
+using CommunityHub.Infrastructure.Models.Registration;
 
 namespace CommunityHub.Infrastructure.Services
 {

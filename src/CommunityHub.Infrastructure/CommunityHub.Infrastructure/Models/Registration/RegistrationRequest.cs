@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CommunityHub.Infrastructure.Models
+namespace CommunityHub.Infrastructure.Models.Registration
 {
     public class RegistrationRequest
     {

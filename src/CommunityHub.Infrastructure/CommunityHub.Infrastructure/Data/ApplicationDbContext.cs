@@ -1,5 +1,5 @@
 ﻿using CommunityHub.Infrastructure.Models;
-using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +15,8 @@ namespace CommunityHub.Infrastructure.Data
         public DbSet<UserInfo> UserInfo { get; set; }
         public DbSet<SpouseInfo> SpouseInfo { get; set; }
         public DbSet<Child> Children { get; set; }
+
+        public DbSet<ContactForm> ContactForms { get; set; }
 
         public ApplicationDbContext(
             DbContextOptions<ApplicationDbContext> options) : base(options)

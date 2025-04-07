@@ -3,7 +3,7 @@ using CommunityHub.Core.Constants;
 using CommunityHub.Core.Dtos;
 using CommunityHub.Core.Factory;
 using CommunityHub.Core.Models;
-using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Login;
 using CommunityHub.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CommunityHub.Infrastructure.Models
+namespace CommunityHub.Infrastructure.Models.Registration
 {
     public class SpouseInfo
     {
@@ -12,6 +12,7 @@ namespace CommunityHub.Infrastructure.Models
         [Required, MinLength(3), MaxLength(50)]
         public string FullName { get; set; } = string.Empty;
 
+        [Required]
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
@@ -19,7 +20,9 @@ namespace CommunityHub.Infrastructure.Models
         public string CountryCode { get; set; } = string.Empty;
 
         [Required]
+        [Phone]
         public string ContactNumber { get; set; } = string.Empty;
+        
         [Required]
         public string Gender { get; set; } = string.Empty;
 

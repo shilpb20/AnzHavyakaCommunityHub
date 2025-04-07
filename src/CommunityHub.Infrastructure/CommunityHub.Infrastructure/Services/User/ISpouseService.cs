@@ -1,6 +1,6 @@
-﻿using CommunityHub.Infrastructure.Models;
+﻿using CommunityHub.Infrastructure.Models.Registration;
 
-namespace CommunityHub.Infrastructure .Services
+namespace CommunityHub.Infrastructure.Services
 {
     public interface ISpouseService
     {

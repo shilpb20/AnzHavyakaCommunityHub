@@ -13,5 +13,7 @@ namespace CommunityHub.Infrastructure.AppMailService.EmailConstants
         public const string RegistrationRequestApproval = "Registration Request Approved";
 
         public const string ResetPassword = "Reset Password";
+
+        public const string UserEnquiry = "User Enquiry";
     }
 }

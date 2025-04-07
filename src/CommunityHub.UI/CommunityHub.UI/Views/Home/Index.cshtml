@@ -1,26 +1,40 @@
-﻿@using CommunityHub.Core.Dtos;
-
+﻿@using CommunityHub.Core.Dtos
 @model List<UserInfoDto>
 
 @{
     ViewData["Title"] = "ANZ Havyaka Family Directory";
-    // var allLocations = Model
-    //     .Select(user => user.Location)
-    //     .Concat(Model.Select(user => user.SpouseInfo?.Location).Where(location => location != null))
-    //     .Distinct()
-    //     .OrderBy(location => location)
-    //     .ToList();
+
+    // Ensure users is not null before using it
+    var users = ViewBag.Users as List<UserInfoDto> ?? new List<UserInfoDto>();
+    var pageSize = 10; // Number of items per page
+    var totalPages = (int)Math.Ceiling(users.Count / (double)pageSize);
 }
 
 <style>
+    .table {
+        margin: 75px;
+    }
+    /* Style for Pagination Controls */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-.table
-{
-    margin: 75px;
-}
+        .pagination .page-item {
+            margin: 0 5px;
+        }
+
+            .pagination .page-item a {
+                padding: 5px 10px;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    /* Hide rows not on the current page */
+    .page-row {
+        display: none;
+    }
 </style>
-<!-- Link to the external CSS file -->
-<link rel="stylesheet" href="~/css/styles.css" />
 
 <h2 class="text-center">ANZ Havyaka Directory</h2>
 
@@ -45,23 +59,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model.Select((value, index) => new { value, index }))
+        @for (var i = 0; i < users.Count; i++)
         {
-            <tr class="member-info">
-                <!-- Sl. No. -->
-                <td>@(user.index + 1)</td>
-
-                <!-- Member Info -->
-                <td>@user.value.FullName</td>
-                <td>
-                    @user.value.Email <br>
-                    @string.Concat(user.value.CountryCode, "-", user.value.ContactNumber)
-                </td>
-                <td>@user.value.Location</td>
-                <td>@user.value.HomeTown</td>
-
-                <!-- Spouse Info -->
-                @if (user.value.SpouseInfo == null)
+            <tr class="page-row page-@((i / pageSize) + 1)">
+                <td>@(i + 1)</td>
+                <td>@users[i].FullName</td>
+                <td>@users[i].Email <br>@string.Concat(users[i].CountryCode, "-", users[i].ContactNumber)</td>
+                <td>@users[i].Location</td>
+                <td>@users[i].HomeTown</td>
+                @if (users[i].SpouseInfo == null)
                 {
                     <td class="not-applicable"></td>
                     <td class="not-applicable"></td>
@@ -69,27 +75,23 @@
                 }
                 else
                 {
-                    <td class="spouse-info">@user.value.SpouseInfo.FullName</td>
-                    <td class="spouse-info">
-                        @user.value.SpouseInfo.Email <br>
-                        @string.Concat(user.value.SpouseInfo.CountryCode, "-", user.value.SpouseInfo.ContactNumber)
-                    </td>
-                    <td class="spouse-info">@user.value.SpouseInfo.Location</td>
-                    <td class="spouse-info">@user.value.SpouseInfo.HomeTown</td>
+                    <td>@users[i].SpouseInfo.FullName</td>
+                    <td>@users[i].SpouseInfo.Email <br>@string.Concat(users[i].SpouseInfo.CountryCode, "-", users[i].SpouseInfo.ContactNumber)</td>
+                    <td>@users[i].SpouseInfo.Location</td>
+                    <td>@users[i].SpouseInfo.HomeTown</td>
                 }
 
-                <!-- Kids Names -->
-                <td class="@(user.value.Children == null || !user.value.Children.Any() ? "not-applicable" : "kids-info")">
-                    @if (user.value.Children != null && user.value.Children.Any())
+                <td>
+                    @if (users[i].Children != null && users[i].Children.Any())
                     {
-                        @foreach (var child in user.value.Children)
+                        @foreach (var child in users[i].Children)
                         {
                             <div>@child.Name</div>
                         }
                     }
                     else
                     {
-                        <span></span>
+                        <span>-</span>
                     }
                 </td>
             </tr>
@@ -98,51 +100,29 @@
 </table>
 
 <!-- Pagination Controls -->
-<div id="pagination-container" class="d-flex justify-content-center mt-3">
-    <!-- First Button -->
-    @if (ViewBag.CurrentPage > 1)
-    {
-        <a href="?page=1" class="btn btn-secondary">First</a>
-    }
-    else
-    {
-        <span class="btn btn-secondary disabled">First</span>
-    }
-
-    <!-- Previous Button -->
-    @if (ViewBag.CurrentPage > 1)
-    {
-        <a href="?page=@(ViewBag.CurrentPage - 1)" class="btn btn-secondary">Previous</a>
-    }
-    else
-    {
-        <span class="btn btn-secondary disabled">Previous</span>
-    }
-
+<div class="pagination">
     <!-- Page Number Buttons -->
-    @for (var i = 1; i <= ViewBag.TotalPages; i++)
+    @for (var i = 1; i <= totalPages; i++)
     {
-        <a href="?page=@i" class="btn btn-secondary @((i == ViewBag.CurrentPage) ? "active" : "")">@i</a>
-    }
-
-    <!-- Next Button -->
-    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-    {
-        <a href="?page=@(ViewBag.CurrentPage + 1)" class="btn btn-secondary">Next</a>
-    }
-    else
-    {
-        <span class="btn btn-secondary disabled">Next</span>
-    }
-
-    <!-- Last Button -->
-    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-    {
-        <a href="?page=@(ViewBag.TotalPages)" class="btn btn-secondary">Last</a>
-    }
-    else
-    {
-        <span class="btn btn-secondary disabled">Last</span>
+        <a href="javascript:void(0);" class="page-item" onclick="showPage(@i)">@i</a>
     }
 </div>
 
+<script>
+    // Function to show the relevant page
+    function showPage(pageNumber) {
+        var rows = document.querySelectorAll('.page-row');
+        rows.forEach(function (row) {
+            row.style.display = 'none';  // Hide all rows
+        });
+
+        // Show only the rows for the selected page
+        var pageRows = document.querySelectorAll('.page-' + pageNumber);
+        pageRows.forEach(function (row) {
+            row.style.display = 'table-row';  // Show rows for the current page
+        });
+    }
+
+    // Initialize the first page as visible
+    showPage(1);
+</script>

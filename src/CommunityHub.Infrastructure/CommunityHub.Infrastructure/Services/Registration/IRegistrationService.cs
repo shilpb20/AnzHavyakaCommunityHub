@@ -1,5 +1,5 @@
 ﻿using CommunityHub.Core.Enums;
-using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 
 namespace CommunityHub.Infrastructure.Services
 {

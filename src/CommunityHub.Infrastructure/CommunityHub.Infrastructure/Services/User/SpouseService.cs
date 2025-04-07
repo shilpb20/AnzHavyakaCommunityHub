@@ -1,6 +1,6 @@
 ﻿using AppComponents.Repository.Abstraction;
 using CommunityHub.Infrastructure.Data;
-using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 using Microsoft.Extensions.Logging;
 
 namespace CommunityHub.Infrastructure.Services

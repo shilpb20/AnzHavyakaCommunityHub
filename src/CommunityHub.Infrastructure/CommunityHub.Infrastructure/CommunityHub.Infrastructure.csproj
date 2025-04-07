@@ -21,6 +21,8 @@
     <Compile Include="Services\Account\JwtTokenService.cs" />
     <Compile Include="Services\Admin\AdminService.cs" />
     <Compile Include="Services\Admin\IAdminService.cs" />
+    <Compile Include="Services\ContactForm\ContactService.cs" />
+    <Compile Include="Services\ContactForm\IContactService.cs" />
     <Compile Include="Services\CookieWriterService.cs" />
     <Compile Include="Services\Registration\IRegistrationService.cs" />
     <Compile Include="Services\Registration\RegistrationService.cs" />

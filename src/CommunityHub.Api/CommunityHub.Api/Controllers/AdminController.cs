@@ -7,7 +7,7 @@ using CommunityHub.Core.Extensions;
 using CommunityHub.Core.Factory;
 using CommunityHub.Core.Messages;
 using CommunityHub.Core.Models;
-using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 using CommunityHub.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

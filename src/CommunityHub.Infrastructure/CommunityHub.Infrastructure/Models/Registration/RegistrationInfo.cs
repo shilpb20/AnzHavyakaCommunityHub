@@ -1,6 +1,7 @@
 ﻿using CommunityHub.Core.Dtos;
+using CommunityHub.Infrastructure.Models.Registration;
 
-namespace CommunityHub.Infrastructure.Models
+namespace CommunityHub.Infrastructure.Models.Registration
 {
     public class RegistrationInfo
     {

@@ -1,6 +1,7 @@
 ﻿using AppComponents.Email.Models;
 using CommunityHub.Core.Models;
 using CommunityHub.Infrastructure.AppMailService;
+using CommunityHub.Infrastructure.AppMailService.EmailTemplateModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace CommunityHub.Infrastructure.EmailService
 {
     public interface IAppMailService
     {
-        public Task<EmailStatus> SendRegistrationNotificationEmailAsync(RegistrationModel model);
-        public Task<EmailStatus> SendRegistrationRejectionEmailAsync(RegistrationRejectModel model);
-        public Task<EmailStatus> SendRegistrationApprovalEmailAsync(RegistrationApprovalModel model);
-        public Task<EmailStatus> SendPasswordResetEmailAsync(EmailLink emailLink);
+        Task<EmailStatus> SendRegistrationNotificationEmailAsync(RegistrationModel model);
+        Task<EmailStatus> SendRegistrationRejectionEmailAsync(RegistrationRejectModel model);
+        Task<EmailStatus> SendRegistrationApprovalEmailAsync(RegistrationApprovalModel model);
+        Task<EmailStatus> SendPasswordResetEmailAsync(EmailLink emailLink);
+        Task<EmailStatus> SendUserEnquiryMail(UserEnquiryModel model);
     }
 }

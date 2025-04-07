@@ -2,6 +2,8 @@
 using CommunityHub.Core.Dtos;
 using CommunityHub.Core.Models;
 using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Login;
+using CommunityHub.Infrastructure.Models.Registration;
 using Newtonsoft.Json;
 
 public class Mapper : Profile
@@ -22,10 +24,8 @@ public class Mapper : Profile
         CreateMap<Child, ChildCreateDto>().ReverseMap();
         CreateMap<ChildDto, ChildCreateDto>().ReverseMap();
 
-        CreateMap<FamilyPicture, FamilyPictureDto>().ReverseMap();
-        CreateMap<FamilyPicture, FamilyPictureCreateDto>().ReverseMap();
-        CreateMap<FamilyPicture, FamilyPictureUpdateDto>().ReverseMap();
-        CreateMap<FamilyPictureDto, FamilyPictureCreateDto>().ReverseMap();
+        CreateMap<ContactForm, ContactFormCreateDto>().ReverseMap();
+        CreateMap<ContactForm, ContactFormDto>().ReverseMap();
 
         CreateMap<RegistrationInfoCreateDto, RegistrationInfoDto>().ReverseMap();
 

@@ -4,6 +4,8 @@ using CommunityHub.Core.Models;
 using CommunityHub.Infrastructure.AppMailService;
 using CommunityHub.Infrastructure.EmailService;
 using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Login;
+using CommunityHub.Infrastructure.Models.Registration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System.Web;

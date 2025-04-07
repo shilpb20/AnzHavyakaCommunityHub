@@ -6,7 +6,7 @@ using CommunityHub.Core.Extensions;
 using CommunityHub.Infrastructure.AppMailService;
 using CommunityHub.Infrastructure.Data;
 using CommunityHub.Infrastructure.EmailService;
-using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;

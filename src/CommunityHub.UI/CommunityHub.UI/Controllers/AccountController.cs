@@ -74,7 +74,7 @@ namespace CommunityHub.UI.Controllers
 
             registrationData.Url = _options.Value.SiteUrl;
             var result = await _registrationService.SendRegistrationRequestAsync(registrationData);
-            if (!result.Success)
+            if (!result.IsSuccess)
             {
                 ModelState.AddModelError(result.ErrorCode, result.ErrorMessage);
                 return View("register", registrationData);
@@ -117,7 +117,7 @@ namespace CommunityHub.UI.Controllers
             }
 
             var result = await _accountService.SetNewPasswordAsync(model);
-            if (!result.Success)
+            if (!result.IsSuccess)
             {
                 ModelState.AddModelError("Password", result.ErrorMessage);
                 return View(model);
@@ -152,7 +152,7 @@ namespace CommunityHub.UI.Controllers
 
             var result = await _accountService.LoginAsync(model);
             var loginResponse = result.Data;
-            if (!result.Success)
+            if (!result.IsSuccess)
             {
                 ViewBag.ErrorMessage = "Invalid login credentials";
                 return View(model);

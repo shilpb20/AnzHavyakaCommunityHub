@@ -48,7 +48,7 @@ namespace CommunityHub.UI.Controllers
         public async Task<IActionResult> RejectRequest([FromForm] int id, [FromForm] string comment)
         {
             var result = await _service.RejectRegistrationRequest(id, comment);
-            if (result != null & result.Success)
+            if (result != null & result.IsSuccess)
             {
                 TempData["SuccessMessage"] = "Registration request has been successfully rejected!";
             }
@@ -65,7 +65,7 @@ namespace CommunityHub.UI.Controllers
         {
             string setPasswordUrl = _appSettings.SiteUrl + UiRoute.Account.SetPassword;
             var result = await _service.ApproveRegistrationRequest(id, setPasswordUrl);
-            if (result != null && result.Success)
+            if (result != null && result.IsSuccess)
             {
                 TempData["SuccessMessage"] = "Registration request has been successfully approved!";
             }

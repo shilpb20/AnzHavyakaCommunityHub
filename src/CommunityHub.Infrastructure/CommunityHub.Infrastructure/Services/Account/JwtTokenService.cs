@@ -1,4 +1,5 @@
 ﻿using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Login;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

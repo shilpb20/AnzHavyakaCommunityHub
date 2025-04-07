@@ -14,6 +14,7 @@ using CommunityHub.Infrastructure.Settings;
 using CommunityHub.Core.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using CommunityHub.Infrastructure.AppMailService.EmailTemplateModels;
 
 namespace CommunityHub.Infrastructure.EmailService
 {
@@ -42,6 +43,8 @@ namespace CommunityHub.Infrastructure.EmailService
             _emailService = _settings.EnableEmails ? emailService : null;
         }
 
+        #region admin-mails
+
         public async Task<EmailStatus> SendRegistrationNotificationEmailAsync(RegistrationModel model)
         {
             model.Title = EmailSubject.RegistrationNotification;
@@ -58,6 +61,27 @@ namespace CommunityHub.Infrastructure.EmailService
 
             return await _emailService?.SendEmailAsync(emailRequest);
         }
+
+        public async Task<EmailStatus> SendUserEnquiryMail(UserEnquiryModel model)
+        {
+            model.Title = EmailSubject.UserEnquiry;
+
+            string template = await EmailTemplateGetter.GetTemplateAsync(_settings.EmailTemplateDirectory, TemplateNames.UserEnquiry);
+            string content = _templateEngine.Render(template, model);
+
+            var emailRequest = new EmailRequest
+            {
+                To = new List<string> { _settings.AdminEmail },
+                Subject = model.Title,
+                HtmlContent = content
+            };
+
+            return await _emailService?.SendEmailAsync(emailRequest);
+        }
+
+        #endregion
+
+        #region user-emails
 
         public async Task<EmailStatus> SendRegistrationApprovalEmailAsync(RegistrationApprovalModel model)
         {
@@ -104,5 +128,7 @@ namespace CommunityHub.Infrastructure.EmailService
 
             return await _emailService?.SendEmailAsync(emailRequest);
         }
+
+        #endregion
     }
 }

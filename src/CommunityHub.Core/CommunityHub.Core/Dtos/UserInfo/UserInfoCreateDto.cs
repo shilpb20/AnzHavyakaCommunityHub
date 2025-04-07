@@ -14,6 +14,7 @@ namespace CommunityHub.Core.Dtos
         public string CountryCode { get; set; } = string.Empty;
 
         [Required]
+        [Phone]
         public string ContactNumber { get; set; } = string.Empty;
 
         [Required]

@@ -6,7 +6,6 @@
         public const string Account = "api/account";
         public const string Admin = "api/admin";
 
-        public const string FamilyPictures = "api/family-pictures/";
+        public const string ContactUs = "api/contact-us";
     }
-
 }

@@ -30,11 +30,11 @@ public class HomeController : Controller
 
     [Authorize(Policy = "AuthenticatedUser")]
     [HttpGet(UiRoute.Home.Index)]
-    public async Task<IActionResult> Index(string? sortBy = null, bool ascending = true)
-    {
-        ApiResponse<List<UserInfoDto>> users = await _service.GetAllUsers(sortBy, ascending);
-        ViewBag.Users = users.Data;
-        return View(users.Data);
+    public async Task<IActionResult> Index()
+    { 
+        var users = await _service.GetAllUsers(null, true);
+        ViewBag.Users = users.Data ?? new List<UserInfoDto>();
+        return View();
     }
 
 
@@ -66,8 +66,6 @@ public class HomeController : Controller
     {
         return View();
     }
-
-
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

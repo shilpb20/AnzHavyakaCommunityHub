@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityHub.Infrastructure.Models.Registration;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace CommunityHub.Infrastructure.Models
+namespace CommunityHub.Infrastructure.Models.Registration
 {
     public class UserInfo
     {
@@ -20,6 +21,7 @@ namespace CommunityHub.Infrastructure.Models
         public string CountryCode { get; set; }
 
         [Required]
+        [Phone]
         public string ContactNumber { get; set; }
 
         [Required]
@@ -36,8 +38,6 @@ namespace CommunityHub.Infrastructure.Models
 
         public virtual SpouseInfo? SpouseInfo { get; set; }
         public virtual List<Child> Children { get; set; } = new List<Child>();
-
-        public virtual FamilyPicture? FamilyPicture { get; set; }
 
         public string ApplicationUserId { get; set; }
 

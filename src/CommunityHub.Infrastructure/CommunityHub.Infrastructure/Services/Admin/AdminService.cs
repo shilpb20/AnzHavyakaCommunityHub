@@ -3,6 +3,7 @@ using AppComponents.Repository.Abstraction;
 using CommunityHub.Infrastructure.AppMailService;
 using CommunityHub.Infrastructure.EmailService;
 using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Web;

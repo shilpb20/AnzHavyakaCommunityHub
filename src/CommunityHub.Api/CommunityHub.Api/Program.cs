@@ -7,12 +7,12 @@ using CommunityHub.Core.Factory;
 using CommunityHub.Infrastructure.Data;
 using CommunityHub.Infrastructure.EmailService;
 using CommunityHub.Infrastructure.Models;
+using CommunityHub.Infrastructure.Models.Registration;
 using CommunityHub.Infrastructure.Services;
 using CommunityHub.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
@@ -102,15 +102,15 @@ builder.Services.AddScoped<IAppMailService, AppMailService>();
 
 
 // Repositories and other services
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddTransactionManager<ApplicationDbContext>();
 builder.Services.AddRepository<UserInfo, ApplicationDbContext>();
 builder.Services.AddRepository<SpouseInfo, ApplicationDbContext>();
 builder.Services.AddRepository<Child, ApplicationDbContext>();
-builder.Services.AddRepository<FamilyPicture, ApplicationDbContext>();
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.Services.AddRepository<ContactForm, ApplicationDbContext>();
 builder.Services.AddRepository<RegistrationRequest, ApplicationDbContext>();
+
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
@@ -118,6 +118,8 @@ builder.Services.AddScoped<ISpouseService, SpouseService>();
 builder.Services.AddScoped<IChildService, ChildService>();
 builder.Services.AddScoped<IUserInfoValidationService, UserInfoValidatorService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IContactService, ContactService>();
+
 builder.Services.AddScoped<IResponseFactory, ResponseFactory>();
 builder.Services.AddScoped<ICookieWriterService, CookieWriterService>();
 

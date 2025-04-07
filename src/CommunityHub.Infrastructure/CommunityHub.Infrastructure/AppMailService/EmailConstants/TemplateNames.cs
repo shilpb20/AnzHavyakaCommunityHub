@@ -11,5 +11,7 @@
 
         public const string AccountVerificationEmail = "account-verification-mail.html";
         public const string ResetPassword = "password-reset-mail.html";
+
+        public const string UserEnquiry = "user-enquiry.html";
     }
 }

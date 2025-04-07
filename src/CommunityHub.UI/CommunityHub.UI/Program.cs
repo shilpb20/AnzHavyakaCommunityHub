@@ -6,6 +6,7 @@ using CommunityHub.UI.Services;
 using CommunityHub.UI.Services.Account;
 using CommunityHub.UI.Services.Admin;
 using CommunityHub.UI.Services.CommunityHub.UI.Services;
+using CommunityHub.UI.Services.Contact;
 using CommunityHub.UI.Services.Registration;
 using CommunityHub.UI.Services.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -36,15 +37,17 @@ builder.Services.AddScoped<BaseService>((sp) =>
 });
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICookieStorage, CookieStorage>();
+builder.Services.AddScoped<ICookieReaderService, CookieReaderService>();
 builder.Services.AddScoped<IResponseFactory, ResponseFactory>();
 builder.Services.AddScoped<IHttpRequestSender, HttpRequestSender>();
+
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ICookieStorage, CookieStorage>();
-builder.Services.AddScoped<ICookieReaderService, CookieReaderService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

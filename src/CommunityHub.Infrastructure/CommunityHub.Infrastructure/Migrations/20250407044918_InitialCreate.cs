@@ -51,6 +51,25 @@ namespace CommunityHub.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ContactForms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactForms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RegistrationRequests",
                 columns: table => new
                 {
@@ -222,26 +241,6 @@ namespace CommunityHub.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FamilyPicture",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserInfoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FamilyPicture", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FamilyPicture_UserInfo_UserInfoId",
-                        column: x => x.UserInfoId,
-                        principalTable: "UserInfo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SpouseInfo",
                 columns: table => new
                 {
@@ -313,12 +312,6 @@ namespace CommunityHub.Infrastructure.Migrations
                 column: "UserInfoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FamilyPicture_UserInfoId",
-                table: "FamilyPicture",
-                column: "UserInfoId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SpouseInfo_CountryCode_ContactNumber",
                 table: "SpouseInfo",
                 columns: new[] { "CountryCode", "ContactNumber" },
@@ -377,7 +370,7 @@ namespace CommunityHub.Infrastructure.Migrations
                 name: "Children");
 
             migrationBuilder.DropTable(
-                name: "FamilyPicture");
+                name: "ContactForms");
 
             migrationBuilder.DropTable(
                 name: "RegistrationRequests");

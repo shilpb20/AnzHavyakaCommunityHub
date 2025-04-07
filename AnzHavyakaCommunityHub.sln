@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailTemplates", "EmailTemp
 		Data\EmailTemplates\registration-request-approval.html = Data\EmailTemplates\registration-request-approval.html
 		Data\EmailTemplates\registration-request-rejection.html = Data\EmailTemplates\registration-request-rejection.html
 		Data\EmailTemplates\registration-request.html = Data\EmailTemplates\registration-request.html
+		Data\EmailTemplates\user-enquiry.html = Data\EmailTemplates\user-enquiry.html
 		Data\EmailTemplates\_footer.html = Data\EmailTemplates\_footer.html
 		Data\EmailTemplates\_header.html = Data\EmailTemplates\_header.html
 		Data\EmailTemplates\_logo.png = Data\EmailTemplates\_logo.png

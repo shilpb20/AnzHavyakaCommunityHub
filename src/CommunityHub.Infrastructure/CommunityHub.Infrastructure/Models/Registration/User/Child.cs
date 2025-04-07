@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CommunityHub.Infrastructure.Models
+namespace CommunityHub.Infrastructure.Models.Registration
 {
     public class Child
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id{ get; set; }
-        
+        public int Id { get; set; }
+
         [Required, MinLength(3), MaxLength(50)]
         public string Name { get; set; } = string.Empty;
 

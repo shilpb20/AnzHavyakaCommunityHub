@@ -2,9 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-@*     <script type="importmap"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> *@
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,7 +18,7 @@
     <header class="header-background">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <img src="~/images/logo.png" alt="CommunityHub Logo" class="img-fluid mb-3" style="max-width: 60px;" />
+                <img src="~/images/logo.png" alt="Logo" class="img-fluid mb-3" style="max-width: 60px;" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ANZ Havyaka Directory</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,28 +30,32 @@
                         @if(User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item ms-auto mx-2">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
 
-                        @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.SuperAdmin)) 
-                        {
+                            @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.SuperAdmin)) 
+                            {
                                 <li class="nav-item mx-2">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                </li>
+                            }
+
+                            <li class="nav-item mx-2">
+                                <form method="POST" action="/account/logout">
+                                    <button type="submit" class="nav-link text-dark" style="background:none; border:none; color: inherit; font: inherit;">
+                                        Logout
+                                    </button>
+                                </form>
                             </li>
                         }
 
-                            <li class="nav-item mx-2">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item mx-2 ms-auto">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact us</a>
                         </li>
 
                         <li class="nav-item mx-2">
-                            <form method="POST" action="/account/logout">
-                                <button type="submit" class="nav-link text-dark" style="background:none; border:none; color: inherit; font: inherit;">
-                                    Logout
-                                </button>
-                            </form>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        }
                     </ul>
                         
                 </div>

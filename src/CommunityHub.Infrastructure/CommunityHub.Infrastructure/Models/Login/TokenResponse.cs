@@ -1,4 +1,4 @@
-﻿namespace CommunityHub.Infrastructure.Models
+﻿namespace CommunityHub.Infrastructure.Models.Login
 {
     public class TokenResponse
     {
