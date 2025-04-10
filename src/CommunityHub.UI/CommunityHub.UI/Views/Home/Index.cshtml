@@ -12,8 +12,10 @@
 
 <style>
     .table {
-        margin: 75px;
+        margin: 75px auto; /* Centers the table */
+        width: 90%; /* Adjust width as needed */
     }
+
     /* Style for Pagination Controls */
     .pagination {
         display: flex;
@@ -69,9 +71,9 @@
                 <td>@users[i].HomeTown</td>
                 @if (users[i].SpouseInfo == null)
                 {
-                    <td class="not-applicable"></td>
-                    <td class="not-applicable"></td>
-                    <td class="not-applicable"></td>
+                    <td class="not-applicable">-</td>
+                    <td class="not-applicable">-</td>
+                    <td class="not-applicable">-</td>
                 }
                 else
                 {
@@ -81,19 +83,24 @@
                     <td>@users[i].SpouseInfo.HomeTown</td>
                 }
 
-                <td>
-                    @if (users[i].Children != null && users[i].Children.Any())
-                    {
-                        @foreach (var child in users[i].Children)
-                        {
-                            <div>@child.Name</div>
-                        }
-                    }
-                    else
-                    {
-                        <span>-</span>
-                    }
-                </td>
+
+                @if (users[i].Children.Any())
+                {
+                    <td>
+                            @for (int j = 0; j < users[i].Children.Count; j++)
+                            {
+                            <div>@users[i].Children[j].Name</div>
+                                @if (j < users[i].Children.Count - 1)
+                                {
+                                <hr style="margin: 5px 0; border-top: 1px solid #ccc;" />
+                                }
+                            }
+                    </td>
+                }
+                else
+                {
+                    <td class="not-applicable">-</td>
+                }
             </tr>
         }
     </tbody>

@@ -72,7 +72,7 @@ namespace CommunityHub.Api.Controllers
             }
         }
 
-        [Authorize(Policy = "AdminUser")]
+        //[Authorize(Policy = "AdminUser")]
         [HttpPost(ApiRoute.Admin.ApproveRequest)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<UserInfoDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

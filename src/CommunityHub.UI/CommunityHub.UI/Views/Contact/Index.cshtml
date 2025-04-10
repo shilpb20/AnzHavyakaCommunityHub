@@ -12,135 +12,119 @@
 }
 <style>
     .container {
-        margin-top: 10px;
+        margin-top: 60px;
     }
 </style>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mt-5">
-                <!-- Contact Form -->
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h2>Contact US</h2>
-                        <h5>We'd Love to Hear From You!</h5>
-                    </div>
-                    <div class="card-body">
-                        <form asp-action="Index" method="post">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 mt-5">
+            <!-- Contact Form -->
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Contact US</h2>
+                    <h5>We'd Love to Hear From You!</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Index" method="post">
 
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-4">
-                                        <label asp-for="Name" class="mb-2"></label>
-                                        <input asp-for="Name" class="form-control mb-2" placeholder="Enter Full Name" required />
-                                        <span asp-validation-for="Name" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group mb-4">
-                                        <label asp-for="Email" class="mb-2"></label>
-                                        <input asp-for="Email" type="email" class="form-control mb-2" placeholder="Enter Email Address" required />
-                                        <span asp-validation-for="Email" class="text-danger"></span>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label asp-for="Name" class="mb-2"></label>
+                                    <input asp-for="Name" class="form-control mb-2" placeholder="Enter Full Name" required />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="row">
 
-                                <div class="col-md-6">
-                                    <div class="form-group mb-4">
-                                        <label asp-for="Subject" class="mb-2"></label>
-                                        <select asp-for="Subject" class="form-select" required>
-                                            <option value="" disabled selected>Select an Option</option>
-                                            <option value="General Enquiry">General Enquiry</option>
-                                            <option value="Feedback">Feedback</option>
-                                            <option value="Idea">Ideas/Improvements</option>
-                                            <option value="Bug">Bug</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                        <span asp-validation-for="Subject" class="text-danger"></span>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label asp-for="Email" class="mb-2"></label>
+                                    <input asp-for="Email" type="email" class="form-control mb-2" placeholder="Enter Email Address" required />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
 
-                                <div class="col-md-6">
-                                    <label asp-for="Location" class="mb-2"></label>
-                                    <select class="form-select" id="Location" asp-for="Location">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label asp-for="Subject" class="mb-2"></label>
+                                    <select asp-for="Subject" class="form-select" required>
                                         <option value="" disabled selected>Select an Option</option>
-                                        <optgroup label="Australia">
-                                            <option value="NSW">New South Wales</option>
-                                            <option value="VIC">Victoria</option>
-                                            <option value="QLD">Queensland</option>
-                                            <option value="SA">South Australia</option>
-                                            <option value="WA">Western Australia</option>
-                                            <option value="TAS">Tasmania</option>
-                                            <option value="ACT">Australian Capital Territory</option>
-                                            <option value="NT">Northern Territory</option>
-                                        </optgroup>
-                                        <optgroup label="Other">
-                                            <option value="NZ">New Zealand</option>
-                                            <option value="IND">India</option>
-                                            <option value="OTR">Other</option>
-                                        </optgroup>
+                                        <option value="General Enquiry">General Enquiry</option>
+                                        <option value="Feedback">Feedback</option>
+                                        <option value="Idea">Ideas/Improvements</option>
+                                        <option value="Bug">Bug</option>
+                                        <option value="Other">Other</option>
                                     </select>
-                                </div>
-
-
-                            </div>
-
-                            <div class="row">
-                                <!-- Message (Full Width Column) -->
-                                <div class="col-12">
-                                    <div class="form-group mb-4">
-                                        <label asp-for="Message" class="mb-2"></label>
-                                        <textarea asp-for="Message" class="form-control mb-2" rows="4" placeholder="Enter your message" required minlength="5" maxlength="1000"></textarea>
-                                        <span asp-validation-for="Message" class="text-danger"></span>
-                                    </div>
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-                            {
-                                <div id="errorMessage" class="alert alert-danger mt-3">
-                                    @ViewBag.ErrorMessage
-                                </div>
-                            }
+                            <div class="col-md-6">
+                                <label asp-for="Location" class="mb-2"></label>
+                                <select class="form-select" id="Location" asp-for="Location">
+                                    <option value="" disabled selected>Select an Option</option>
+                                    <optgroup label="Australia">
+                                        <option value="NSW">New South Wales</option>
+                                        <option value="VIC">Victoria</option>
+                                        <option value="QLD">Queensland</option>
+                                        <option value="SA">South Australia</option>
+                                        <option value="WA">Western Australia</option>
+                                        <option value="TAS">Tasmania</option>
+                                        <option value="ACT">Australian Capital Territory</option>
+                                        <option value="NT">Northern Territory</option>
+                                    </optgroup>
+                                    <optgroup label="Other">
+                                        <option value="NZ">New Zealand</option>
+                                        <option value="IND">India</option>
+                                        <option value="OTR">Other</option>
+                                    </optgroup>
+                                </select>
+                            </div>
 
-                            <!-- Submit Button -->
-                            <div class="row justify-content-center">
-                                <div class="col-4">
-                                    <div class="form-group text-center">
-                                        <button type="submit" class="btn btn-primary w-100 mb-2">Submit</button>
-                                    </div>
+
+                        </div>
+
+                        <div class="row">
+                            <!-- Message (Full Width Column) -->
+                            <div class="col-12">
+                                <div class="form-group mb-4">
+                                    <label asp-for="Message" class="mb-2"></label>
+                                    <textarea asp-for="Message" class="form-control mb-2" rows="4" placeholder="Enter your message" required minlength="5" maxlength="1000"></textarea>
+                                    <span asp-validation-for="Message" class="text-danger"></span>
                                 </div>
                             </div>
-                        </form>
+                        </div>
 
-                        @if (TempData["SuccessMessage"] != null)
+                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
                         {
-                            <div id="successMessage" class="alert alert-success mt-3">
-                                @TempData["SuccessMessage"]
+                            <div id="errorMessage" class="alert alert-danger mt-3">
+                                @ViewBag.ErrorMessage
                             </div>
                         }
-                    </div>
+
+                        <!-- Submit Button -->
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-primary w-100 mb-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div id="successMessage" class="alert alert-success mt-3">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-</body>
-</html>
+</div>
