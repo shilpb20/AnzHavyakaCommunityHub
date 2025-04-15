@@ -16,9 +16,7 @@ namespace CommunityHub.Infrastructure.Services
         private readonly ITransactionManager _transactionManager;
         private readonly IRegistrationService _registrationService;
         private readonly IAccountService _accountService;
-        private readonly IUserService _userService;
-        private readonly ISpouseService _spouseService;
-        private readonly IChildService _childService;
+        private readonly IUserAccountManagementService _accountManagementService;
         private readonly IAppMailService _mailService;
 
         public AdminService(
@@ -26,18 +24,14 @@ namespace CommunityHub.Infrastructure.Services
             ITransactionManager transactionManager,
             IRegistrationService registrationService,
             IAccountService accountService,
-            IUserService userService,
-            ISpouseService spouseService,
-            IChildService childService,
+            IUserAccountManagementService accountManagementService,
             IAppMailService mailService)
         {
             _logger = logger;
             _transactionManager = transactionManager;
             _registrationService = registrationService;
             _accountService = accountService;
-            _userService = userService;
-            _spouseService = spouseService;
-            _childService = childService;
+            _accountManagementService = accountManagementService;
             _mailService = mailService;
         }
 
@@ -46,6 +40,7 @@ namespace CommunityHub.Infrastructure.Services
             string appSetPasswordUrl)
         {
             await _transactionManager.BeginTransactionAsync();
+            
             try
             {
                 var matchingRequest = await _registrationService.GetRequestByIdAsync(registrationRequest.Id);
@@ -53,32 +48,11 @@ namespace CommunityHub.Infrastructure.Services
 
                 var registrationInfo = JsonConvert.DeserializeObject<RegistrationInfo>(matchingRequest.RegistrationInfo);
 
-                var applicationUser = await _accountService.CreateAccountAsync(registrationInfo.UserInfo);
-                if (applicationUser == null)
+                var userInfo = await _accountManagementService.CreateUserAccountAsync(registrationInfo);
+                if(userInfo == null)
                 {
                     await _transactionManager.RollbackTransactionAsync();
                     return null;
-                };
-
-                var userInfo = registrationInfo.UserInfo;
-                userInfo.ApplicationUserId = applicationUser.Id;
-                var newUser = await _userService.CreateUserAsync(userInfo);
-
-                var spouseInfo = registrationInfo.SpouseInfo;
-                if (spouseInfo != null)
-                {
-                    spouseInfo.UserInfoId = newUser.Id;
-                    await _spouseService.CreateSpouseAsync(spouseInfo);
-                }
-
-                var children = registrationInfo.Children;
-                if (children.Any())
-                {
-                    foreach (var child in children)
-                    {
-                        child.UserInfoId = newUser.Id;
-                        await _childService.CreateChildAsync(child);
-                    }
                 }
 
                 matchingRequest.Approve();
@@ -87,11 +61,11 @@ namespace CommunityHub.Infrastructure.Services
                 await _transactionManager.CommitTransactionAsync();
 
                 var emailStatus = await SendConfirmationEmail(
-                    applicationUser,
-                    userInfo.FullName,
+                    userInfo.ApplicationUser,
+                    registrationInfo.UserInfo.FullName,
                     appSetPasswordUrl);
                 
-                return newUser;
+                return userInfo;
             }
             catch (Exception ex)
             {

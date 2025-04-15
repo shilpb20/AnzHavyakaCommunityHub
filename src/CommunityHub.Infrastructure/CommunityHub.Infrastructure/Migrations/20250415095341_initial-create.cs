@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CommunityHub.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -201,7 +201,6 @@ namespace CommunityHub.Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CountryCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ContactNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaritalStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HomeTown = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -249,7 +248,6 @@ namespace CommunityHub.Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CountryCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ContactNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HomeTown = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HouseName = table.Column<string>(type: "nvarchar(max)", nullable: true),

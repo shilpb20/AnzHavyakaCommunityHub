@@ -4,6 +4,9 @@
     {
         public static class Account
         {
+            /// <summary>Deletes the current user account</summary>
+            public const string Delete = $"{ApiPrefixes.Account}/delete-account";
+
             /// <summary>Registers a new user</summary>
             public const string SetPassword = $"{ApiPrefixes.Account}/set-password";
 

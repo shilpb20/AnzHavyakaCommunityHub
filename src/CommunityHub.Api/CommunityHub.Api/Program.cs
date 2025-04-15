@@ -114,6 +114,7 @@ builder.Services.AddRepository<RegistrationRequest, ApplicationDbContext>();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IUserAccountManagementService, UserAccountManagementService>();
 builder.Services.AddScoped<ISpouseService, SpouseService>();
 builder.Services.AddScoped<IChildService, ChildService>();
 builder.Services.AddScoped<IUserInfoValidationService, UserInfoValidatorService>();

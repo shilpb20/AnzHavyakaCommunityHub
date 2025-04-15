@@ -10,5 +10,6 @@ namespace CommunityHub.Infrastructure.Services
         Task<UserInfo> CreateUserAsync(UserInfo userInfo);
         Task<UserInfo> GetUserInfoByContactNumber(string countryCode, string contactNumber);
         Task<UserInfo> GetUserInfoByEmail(string email);
+        Task<UserInfo> DeleteUserAsync(UserInfo userInfo);
     }
 }

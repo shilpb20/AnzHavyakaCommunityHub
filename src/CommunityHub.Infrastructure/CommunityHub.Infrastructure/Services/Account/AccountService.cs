@@ -31,6 +31,8 @@ namespace CommunityHub.Infrastructure.Services
             _userManager = userManager;
         }
 
+        #region create-account
+
         public async Task<ApplicationUser> CreateAccountAsync(UserInfo userInfo)
         {
             try
@@ -63,6 +65,49 @@ namespace CommunityHub.Infrastructure.Services
             return await _userManager.GeneratePasswordResetTokenAsync(applicationUser);
         }
 
+        #endregion
+
+        #region login
+
+        public async Task<LoginResponse> LoginAsync(string email, string password)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            var response = new LoginResponse();
+            if (user == null)
+            {
+                response.Message = "Invalid login credentials";
+                response.IsAuthenticated = false;
+                return response;
+            }
+
+            var result = await _userManager.CheckPasswordAsync(user, password);
+            if (!result)
+            {
+                response.Message = "Invalid login credentials";
+                response.IsAuthenticated = false;
+                return response;
+            }
+
+            var token = await _jwtTokenService.GenerateTokenAsync(user);
+            if (string.IsNullOrEmpty(token.Token))
+            {
+                response.Message = "Failed to generate token";
+                response.IsAuthenticated = false;
+                return response;
+            }
+
+            response.TokenResponse = token;
+            response.Message = "Login successful";
+            response.IsAuthenticated = true;
+            response.UserRoles = await _userManager.GetRolesAsync(user);
+
+            return response;
+        }
+
+        #endregion
+
+        #region set-password
 
         public async Task<bool> SendPasswordResetEmailAsync(string email, string appPasswordResetUrl)
         {
@@ -126,41 +171,28 @@ namespace CommunityHub.Infrastructure.Services
             return PasswordResetResult.SuccessResult();
         }
 
-        public async Task<LoginResponse> LoginAsync(string email, string password)
-        {
-            var user = await _userManager.FindByEmailAsync(email);
+        #endregion
 
-            var response = new LoginResponse();
+
+    #region delete-account
+
+    public async Task<ApplicationUser> DeleteAccountAsync(string applicationUserId)
+        {
+            var user = await _userManager.FindByIdAsync(applicationUserId);
             if (user == null)
             {
-                response.Message = "Invalid login credentials";
-                response.IsAuthenticated = false;
-                return response;
+                return null;
             }
 
-            var result = await _userManager.CheckPasswordAsync(user, password);
-            if (!result)
+            var result = await _userManager.DeleteAsync(user);
+            if (!result.Succeeded)
             {
-                response.Message = "Invalid login credentials";
-                response.IsAuthenticated = false;
-                return response;
+                return null;
             }
 
-            var token = await _jwtTokenService.GenerateTokenAsync(user);
-            if (string.IsNullOrEmpty(token.Token))
-            {
-                response.Message = "Failed to generate token";
-                response.IsAuthenticated = false;
-                return response;
-            }
-
-            response.TokenResponse = token;
-            response.Message = "Login successful";
-            response.IsAuthenticated = true;
-            response.UserRoles = await _userManager.GetRolesAsync(user);
-
-            return response;
+            return user;
         }
 
+        #endregion
     }
 }

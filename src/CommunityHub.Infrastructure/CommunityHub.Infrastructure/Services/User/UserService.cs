@@ -81,5 +81,21 @@ namespace CommunityHub.Infrastructure.Services
                 throw;
             }
         }
+
+        public async Task<UserInfo> DeleteUserAsync(UserInfo userInfo)
+        {
+            try
+            {
+                if(userInfo == null)
+                    throw new ArgumentNullException(nameof(userInfo));
+
+                return await _userRepository.DeleteAsync(userInfo);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating user with ID {UserId}", userInfo.Id);
+                throw;
+            }
+        }
     }
 }

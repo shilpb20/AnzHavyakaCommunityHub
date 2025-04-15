@@ -8,6 +8,9 @@ namespace CommunityHub.Infrastructure.Services
     public interface IAccountService
     {
         Task<ApplicationUser> CreateAccountAsync(UserInfo userInfo);
+        Task<ApplicationUser> DeleteAccountAsync(string applicationUserId);
+
+
         Task<string> GenerateTokenAsync(ApplicationUser applicationUser);
         Task<LoginResponse> LoginAsync(string email, string password);
 

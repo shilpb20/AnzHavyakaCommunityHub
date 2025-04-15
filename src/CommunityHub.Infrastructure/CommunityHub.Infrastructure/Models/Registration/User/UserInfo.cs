@@ -24,8 +24,6 @@ namespace CommunityHub.Infrastructure.Models.Registration
         [Phone]
         public string ContactNumber { get; set; }
 
-        [Required]
-        public string Gender { get; set; } = string.Empty;
 
         [Required]
         public string Location { get; set; } = string.Empty;
@@ -40,6 +38,7 @@ namespace CommunityHub.Infrastructure.Models.Registration
         public virtual List<Child> Children { get; set; } = new List<Child>();
 
         public string ApplicationUserId { get; set; }
+
 
         [ForeignKey(nameof(ApplicationUserId))]
         public ApplicationUser ApplicationUser { get; set; }

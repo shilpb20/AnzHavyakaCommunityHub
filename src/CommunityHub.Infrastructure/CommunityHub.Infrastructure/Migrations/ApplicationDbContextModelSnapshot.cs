@@ -203,10 +203,6 @@ namespace CommunityHub.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("HomeTown")
                         .HasColumnType("nvarchar(max)");
 
@@ -262,10 +258,6 @@ namespace CommunityHub.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HomeTown")
                         .HasColumnType("nvarchar(max)");

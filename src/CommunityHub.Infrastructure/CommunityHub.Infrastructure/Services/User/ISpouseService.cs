@@ -10,5 +10,6 @@ namespace CommunityHub.Infrastructure.Services
         Task<SpouseInfo> GetSpouseInfoByEmail(string email);
         Task<SpouseInfo> GetSpouseInfoByPhone(string countryCode, string contactNumber);
         Task<SpouseInfo> GetSpouseInfoByUserInfoIdAsync(int userInfoId);
+        Task<SpouseInfo> DeleteSpouseAsync(SpouseInfo spouseInfo);
     }
 }

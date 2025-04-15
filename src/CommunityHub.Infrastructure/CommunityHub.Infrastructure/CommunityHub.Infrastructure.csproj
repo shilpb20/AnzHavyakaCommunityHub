@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Services\AccountManagement\IUserAccountManagementService.cs" />
+    <Compile Include="Services\AccountManagement\UserAccountManagementService.cs" />
     <Compile Include="Services\Account\ICookieWriterService.cs" />
     <Compile Include="Services\Account\IJwtTokenService.cs" />
     <Compile Include="Services\Account\JwtTokenService.cs" />

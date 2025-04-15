@@ -18,10 +18,13 @@ namespace CommunityHub.Api.Controllers
         private readonly ICookieWriterService _cookieService;
         private readonly IResponseFactory _responseFactory;
 
+        private readonly IUserAccountManagementService _accountManagementService;
+
         public AccountController(
             ILogger<AccountController> logger,
             IMapper mapper,
             IAccountService accountService,
+            IUserAccountManagementService accountManagementService,
             ICookieWriterService cookieService,
             IResponseFactory responseFactory)
         {
@@ -29,6 +32,7 @@ namespace CommunityHub.Api.Controllers
             _mapper = mapper;
             _cookieService = cookieService;
             _accountService = accountService;
+            _accountManagementService = accountManagementService;
             _responseFactory = responseFactory;
         }
 
@@ -37,7 +41,7 @@ namespace CommunityHub.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ApiResponse<LoginResponseDto>>> Login([FromBody] Login model)
         {
-            if (string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password))
+            if (!ModelState.IsValid)
             {
                 var response = _responseFactory.Failure<LoginResponse>("Login Error", "Email and password are required.");
                 return BadRequest(response);
@@ -76,7 +80,7 @@ namespace CommunityHub.Api.Controllers
         [HttpPost(ApiRoute.Account.SetPassword)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<bool>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ApiResponse<bool>>> SetPasswordAsync([FromBody]SetPassword model)
+        public async Task<ActionResult<ApiResponse<bool>>> SetPasswordAsync([FromBody] SetPassword model)
         {
             if (model.Password != model.ConfirmPassword)
             {
@@ -96,5 +100,20 @@ namespace CommunityHub.Api.Controllers
             return BadRequest(failureResponse);
         }
 
+        [HttpDelete(ApiRoute.Account.Delete)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResponse<bool>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ApiResponse<bool>>> DeleteAccountAsync(int id)
+        {
+            var result = await _accountManagementService.DeleteUserAccountAsync(id);
+            if (result != null)
+            {
+                var response = _responseFactory.Success<bool>(true);
+                return Ok(response);
+            }
+
+            var failureResponse = _responseFactory.Failure<bool>("Account Deletion Error", $"Failed to delete account.");
+            return BadRequest(failureResponse);
+        }
     }
 }

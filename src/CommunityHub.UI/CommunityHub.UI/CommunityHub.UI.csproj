@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\pagination.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\CommunityHub.Core\CommunityHub.Core\CommunityHub.Core.csproj" />
   </ItemGroup>
 

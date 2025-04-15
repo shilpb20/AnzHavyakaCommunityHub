@@ -70,5 +70,17 @@ namespace CommunityHub.Infrastructure.Services
         }
 
         #endregion
+
+        #region delete-spouse-info
+
+        public async Task<SpouseInfo> DeleteSpouseAsync(SpouseInfo spouseInfo)
+        {
+            if(spouseInfo == null)
+                throw new ArgumentNullException(nameof(spouseInfo));
+
+            return  await _spouseRepository.DeleteAsync(spouseInfo);
+        }
+
+        #endregion
     }
 }

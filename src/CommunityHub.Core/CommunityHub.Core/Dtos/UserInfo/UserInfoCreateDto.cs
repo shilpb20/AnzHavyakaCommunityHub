@@ -17,14 +17,13 @@ namespace CommunityHub.Core.Dtos
         [Phone]
         public string ContactNumber { get; set; } = string.Empty;
 
-        [Required]
-        public string Gender { get; set; } = string.Empty;
 
         [Required]
         public string Location { get; set; } = string.Empty;
 
         [Required]
         public string MaritalStatus { get; set; } = string.Empty;
+
 
         public string? HomeTown { get; set; } = string.Empty;
 
